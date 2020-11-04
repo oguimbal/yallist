@@ -1,10 +1,10 @@
-'use strict'
-module.exports = Yallist
+// @ts-nocheck
+
 
 Yallist.Node = Node
 Yallist.create = Yallist
 
-function Yallist (list) {
+export default function Yallist (list) {
   var self = this
   if (!(self instanceof Yallist)) {
     self = new Yallist()
@@ -420,7 +420,9 @@ function Node (value, prev, next, list) {
   }
 }
 
-try {
-  // add if support for Symbol.iterator is present
-  require('./iterator.js')(Yallist)
-} catch (er) {}
+// add if support for Symbol.iterator is present
+Yallist.prototype[Symbol.iterator] = function* () {
+  for (let walker = this.head; walker; walker = walker.next) {
+    yield walker.value
+  }
+}
