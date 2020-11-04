@@ -1,4 +1,4 @@
-# yallist
+# Deno compatible version of [yallist](https://github.com/isaacs/yallist)
 
 Yet Another Linked List
 
@@ -13,9 +13,10 @@ reverse order.
 
 ## basic usage
 
-```javascript
-var yallist = require('yallist')
-var myList = yallist.create([1, 2, 3])
+```typescript
+import yallist from "https://deno.land/x/yallist@4.0.0/index.ts";
+
+var myList = yallist.create(['1', 2, 3])
 myList.push('foo')
 myList.unshift('bar')
 // of course pop() and shift() are there, too
@@ -26,12 +27,12 @@ myList.forEach(function (k) {
 myList.forEachReverse(function (k, index, list) {
   // walk the list tail to head
 })
-var myDoubledList = myList.map(function (k) {
+var myDoubledList = myList.map(function (k: any) {
   return k + k
 })
 // now myDoubledList contains ['barbar', 2, 4, 6, 'foofoo']
 // mapReverse is also a thing
-var myDoubledListReverse = myList.mapReverse(function (k) {
+var myDoubledListReverse = myList.mapReverse(function (k: any) {
   return k + k
 }) // ['foofoo', 6, 4, 2, 'barbar']
 
